@@ -12,7 +12,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       movies: [],
-      loading: false
+      loading: false,
+      refreshing: false
     }
   }
   fetchWithPage(){

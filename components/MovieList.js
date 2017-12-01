@@ -26,9 +26,10 @@ class MovieList extends Component {
 // define your styles
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
 		marginTop: 100,
-		marginLeft: 37,
 	},
+
 });
 
 //make this component available to the app

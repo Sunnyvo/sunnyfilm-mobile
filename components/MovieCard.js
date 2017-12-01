@@ -10,7 +10,7 @@ class MovieCard extends Component {
 				this.props.poster_path}`,
 		};
 		return (
-			<View>
+			<View style = {styles.container}>
 				<Image style={{ width: 300, height :150}} source = {img} />
 				<Text> {this.props.title}</Text>
 			</View>
@@ -22,9 +22,7 @@ class MovieCard extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#2c3e50',
+		marginLeft: 37,
 	},
 });
 
