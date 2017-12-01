@@ -10,20 +10,20 @@ export default class App extends React.Component {
 
   constructor(props){
     super(props);
+    this.fetchWithPage= this.fetchWithPage.bind(this);
+    this.loadMore = this.loadMore.bind(this);
     this.state = {
       movies: [],
       loading: false,
-      refreshing: false
+      // refreshing: false,
+      page: 1
     }
   }
-  fetchWithPage(){
-
-  }
-  componentWillMount(){
+  fetchWithPage(page){
     this.setState({
       loading: true
     }, () => {
-      fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=1`)
+      fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`)
       .then((data) => data.json())
       .then((json) => {
         return new Promise((resolve, reject)=> {
@@ -41,6 +41,16 @@ export default class App extends React.Component {
       })
     });
   }
+  loadMore(){
+    const newPage = this.state.page + 1
+    this.setState({
+      page: newPage
+    },() => this.fetchWithPage(newPage));
+  }
+  
+  componentWillMount(){
+    this.fetchWithPage(1)
+  }
   render() {
     let listmovies = this.state.movies
     let loadinglist = this.state.loading
@@ -48,6 +58,8 @@ export default class App extends React.Component {
       <MovieList
         movies  = {listmovies}
         loading = {loadinglist}
+        loadMore = {this.loadMore}
+
       />
     );
   }
