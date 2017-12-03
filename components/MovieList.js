@@ -5,22 +5,43 @@ import MovieCard from './MovieCard';
 // import MovieCard from './MovieCard'
 // create a component
 class MovieList extends Component {
+	constructor(props){
+		super(props)
+		this.state= {
+
+		}
+
+	}
 	render() {
 		return (
+			this.props.loading ?
+			null
+			:
 			<View style={styles.container}>
-				{
-					this.props.loading ? <Text> Loading...</Text> : null
-				}
 				<FlatList
 					data={this.props.movies}
-					KeyExtractor={movie => movie.id}
+					// keyExtractor={movie => movie.id}
 					renderItem={(movieItem) => <MovieCard  {...movieItem.item} />}
 					onRefresh= {this.props.refreshPage}
-					// onEndReachedThreshold={0.05}
 					refreshing={this.props.loading}
-				/>
+					onEndReachedThreshold={0.05}
+					onEndReached = {this.props.loadMore}
+					ListFooterComponent={this.renderFooter}
+					/>
 			</View>
 		);
+	}
+	renderFooter = () => {
+		return this.props.loading ?
+				null
+			:
+				(<View style={{ paddingVertical: 20 }}>
+				<ActivityIndicator
+					animating size='large'
+					style={styles.activityIndicator}
+				/>
+				</View>
+				);
 	}
 }
 
@@ -32,14 +53,14 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginTop: 100,
 	},
-	centering: {
+	activityIndicator: {
 		alignItems: 'center',
 		justifyContent: 'center',
 		padding: 8,
+		height: 70,
+
 	},
-	gray: {
-		backgroundColor: '#cccccc',
-	},
+
 });
 
 //make this component available to the app

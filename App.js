@@ -17,7 +17,6 @@ export default class App extends React.Component {
       movies: [],
       loading: false,
       // refreshing: false,
-      page: 1
     }
   }
   fetchWithPage(page){
@@ -36,22 +35,27 @@ export default class App extends React.Component {
       .then ((json) => {
         console.log (json.results);
         this.setState({
-          movies: json.results,
+          movies: this.state.movies.concat(json.results),
           loading: false
         });
       })
     });
   }
+
   loadMore(){
     const newPage = this.state.page + 1
+    alert("helloworld" + newPage)
     this.setState({
       page: newPage
-    },() => this.fetchWithPage(newPage));
-  }
+    },() => setTimeout(
+        () => this.fetchWithPage(newPage),2000)
+    );
+}
 
   componentWillMount(){
     this.fetchWithPage(1)
   }
+
   refreshPage(){
     this.setState({
       movies: [],
@@ -68,7 +72,6 @@ export default class App extends React.Component {
         loading = {loadinglist}
         loadMore = {this.loadMore}
         refreshPage = {this.refreshPage}
-
       />
     );
   }
