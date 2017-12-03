@@ -12,6 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.fetchWithPage= this.fetchWithPage.bind(this);
     this.loadMore = this.loadMore.bind(this);
+    this.refreshPage = this.refreshPage.bind(this);
     this.state = {
       movies: [],
       loading: false,
@@ -47,10 +48,17 @@ export default class App extends React.Component {
       page: newPage
     },() => this.fetchWithPage(newPage));
   }
-  
+
   componentWillMount(){
     this.fetchWithPage(1)
   }
+  refreshPage(){
+    this.setState({
+      movies: [],
+      page: 1
+  },() => this.fetchWithPage(1));
+  }
+
   render() {
     let listmovies = this.state.movies
     let loadinglist = this.state.loading
@@ -59,6 +67,7 @@ export default class App extends React.Component {
         movies  = {listmovies}
         loading = {loadinglist}
         loadMore = {this.loadMore}
+        refreshPage = {this.refreshPage}
 
       />
     );
