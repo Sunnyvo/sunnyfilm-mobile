@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image,TouchableHighlight } from 'react-native';
 
 // create a component
 class MovieCard extends Component {
@@ -10,11 +10,16 @@ class MovieCard extends Component {
 				this.props.poster_path}`,
 		};
 		return (
-			<View style = {styles.container}>
-				<Image style={{ width: 300, height :150}} source = {img} />
-				<Text> {this.props.title}</Text>
-			</View>
-		);
+			
+			<TouchableHighlight onPress={() => alert("test")}>
+				<View style = {styles.container}>
+					<Image style={{ width: 300, height :150}} source = {img} />
+					<Text> {this.props.title}</Text>
+				</View>
+			</TouchableHighlight>
+
+
+	);
 	}
 }
 

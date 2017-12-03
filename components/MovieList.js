@@ -14,18 +14,15 @@ class MovieList extends Component {
 	}
 	render() {
 		return (
-			this.props.loading ?
-			null
-			:
 			<View style={styles.container}>
 				<FlatList
 					data={this.props.movies}
-					// keyExtractor={movie => movie.id}
+					keyExtractor={movie => movie.id}
 					renderItem={(movieItem) => <MovieCard  {...movieItem.item} />}
 					onRefresh= {this.props.refreshPage}
 					refreshing={this.props.loading}
 					onEndReachedThreshold={0.05}
-					onEndReached = {this.props.loadMore}
+					onEndReached = {this.props.loading ? null : this.props.loadMore}
 					ListFooterComponent={this.renderFooter}
 					/>
 			</View>
@@ -33,10 +30,13 @@ class MovieList extends Component {
 	}
 	renderFooter = () => {
 		return this.props.loading ?
-				null
+				<View style={{ paddingVertical: 20 }}>
+					<Text> {`Coming soon >.<`} </Text>
+				</View>
 			:
 				(<View style={{ paddingVertical: 20 }}>
 				<ActivityIndicator
+					color = '#bc2b78'
 					animating size='large'
 					style={styles.activityIndicator}
 				/>
