@@ -31,3 +31,8 @@ Check out The Movie Database documentation. In particular:
     The movie poster is available by appending the returned poster_path to https://image.tmdb.org/t/p/w342.
     The low resolution movie poster is available by appending the returned poster_path to https://image.tmdb.org/t/p/w45
     The high resolution movie poster is available by appending the returned poster_path to https://image.tmdb.org/t/p/original
+
+Link demo:
+https://www.youtube.com/watch?v=ev9x4U6pSCc
+link github:
+https://github.com/Sunnyvo/sunnyfilm-mobile
