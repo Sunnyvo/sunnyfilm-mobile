@@ -10,8 +10,8 @@ class MovieCard extends Component {
 				this.props.poster_path}`,
 		};
 		return (
-			
-			<TouchableHighlight onPress={() => alert("test")}>
+
+			<TouchableHighlight onPress={() => this.props.loadProfile()}>
 				<View style = {styles.container}>
 					<Image style={{ width: 300, height :150}} source = {img} />
 					<Text> {this.props.title}</Text>

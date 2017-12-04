@@ -68,6 +68,7 @@ export default class Hot extends React.Component {
   render() {
     let listmovies = this.state.movies
     let loadinglist = this.state.loading
+
     return (
       <View style={styles.container}>
         <MovieList
@@ -75,6 +76,7 @@ export default class Hot extends React.Component {
           loading = {loadinglist}
           loadMore = {this.loadMore}
           refreshPage = {this.refreshPage}
+          navigation = {this.props.navigation}
         />
       </View>
     );

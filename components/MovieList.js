@@ -13,12 +13,18 @@ class MovieList extends Component {
 
 	}
 	render() {
+		const navigate = this.props.navigation.navigate
+		// const onLearnMore = (user) => {
+		// 	this.props.navigation.navigate()
+		// }
 		return (
 			<View style={styles.container}>
 				<FlatList
 					data={this.props.movies}
 					keyExtractor={movie => movie.id}
-					renderItem={(movieItem) => <MovieCard  {...movieItem.item} />}
+					renderItem={(movieItem) => <MovieCard  {...movieItem.item}
+					loadProfile = {()=> navigate('MovieProfile')}
+					 />}
 					onRefresh= {this.props.refreshPage}
 					refreshing={this.props.loading}
 					onEndReachedThreshold={0.05}

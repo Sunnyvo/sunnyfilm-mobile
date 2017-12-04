@@ -75,6 +75,7 @@ export default class App extends React.Component {
           loading = {loadinglist}
           loadMore = {this.loadMore}
           refreshPage = {this.refreshPage}
+          navigation = {this.props.navigation}
         />
       </View>
     );

@@ -6,7 +6,8 @@ import Home from '../screen/Home';
 import Hot from '../screen/Hot';
 import Popular from '../screen/Popular';
 import TopRate from '../screen/TopRate';
-import Playing from '../screen/Playing';
+// import Playing from '../screen/Playing';
+import MovieProfile from '../screen/MovieProfile';
 // create a component
 export const HomeStack = StackNavigator({
   Playing: {
@@ -16,15 +17,14 @@ export const HomeStack = StackNavigator({
     }
   },
 
-
-
-
-  Hot: {
-    screen: Hot,
+  MovieProfile: {
+    screen: MovieProfile,
     navigationOptions: {
-      title: 'Up Coming',
+      title: 'Movie Profile'
     }
-  }
+  },
+
+
 });
 
 export const TopRateStack = StackNavigator({

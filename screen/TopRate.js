@@ -66,6 +66,7 @@ export default class TopRate extends React.Component {
   }
 
   render() {
+
     let listmovies = this.state.movies
     let loadinglist = this.state.loading
     return (
@@ -75,6 +76,7 @@ export default class TopRate extends React.Component {
           loading = {loadinglist}
           loadMore = {this.loadMore}
           refreshPage = {this.refreshPage}
+          navigation = {this.props.navigation}
         />
       </View>
     );

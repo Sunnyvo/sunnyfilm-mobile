@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 // create a component
-class PLaying extends Component {
+class MovieProfile extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>PLaying</Text>
+      <View>
+        <Text>Movie Profile</Text>
       </View>
     );
   }
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default PLaying;
+export default MovieProfile;
