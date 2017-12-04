@@ -13,10 +13,12 @@ export default class App extends React.Component {
     this.fetchWithPage= this.fetchWithPage.bind(this);
     this.loadMore = this.loadMore.bind(this);
     this.refreshPage = this.refreshPage.bind(this);
+    this.searchMovie = this.searchMovie.bind(this);
     this.state = {
       movies: [],
       loading: false,
-      page: 1
+      page: 1,
+      onSearch: false
       // refreshing: false,
     }
   }
@@ -45,6 +47,33 @@ export default class App extends React.Component {
     });
   }
 
+
+  fetchSearch(key){
+    this.setState({
+      loading: true
+    }, () => {
+      fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&page=1&include_adult=false&query=${key}`)
+      .then((data) => data.json())
+      .then((json) => {
+        return new Promise((resolve, reject)=> {
+          setTimeout(()=>{
+            resolve(json);
+          },1);
+        });
+      })
+      .then ((json) => {
+        console.log(this.state.movies)
+        const keySets = new Set([...this.state.movies.map((m => m.id))]);
+        const setResults = json.results.filter((m) => !keySets.has(m.id));
+        this.setState({
+          movies: this.state.movies.concat(setResults),
+          loading: false
+        });
+      })
+    });
+  }
+
+
   loadMore(){
     const newPage = this.state.page + 1
     this.setState({
@@ -64,6 +93,18 @@ export default class App extends React.Component {
       page: 1
   },() => this.fetchWithPage(1));
   }
+  searchMovie = event => {
+
+    key = 'Th';
+
+    console.log(key);
+    const Key = key;
+
+    this.setState({
+      movies: [],
+      page: 1
+  },() => this.fetchSearch(Key));
+  }
 
   render() {
     let listmovies = this.state.movies
@@ -71,11 +112,13 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <MovieList
+          onSearch ={this.props.onSearch}
           movies  = {listmovies}
           loading = {loadinglist}
           loadMore = {this.loadMore}
           refreshPage = {this.refreshPage}
           navigation = {this.props.navigation}
+          searchMovie ={this.searchMovie}
         />
       </View>
     );

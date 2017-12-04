@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import MovieCard from './MovieCard';
+import {SearchBar} from 'react-native-elements';
 // import MovieCard from './MovieCard'
 // create a component
 class MovieList extends Component {
@@ -23,13 +24,14 @@ class MovieList extends Component {
 					data={this.props.movies}
 					keyExtractor={movie => movie.id}
 					renderItem={(movieItem) => <MovieCard  {...movieItem.item}
-					loadProfile = {()=> navigate('MovieProfile')}
+					loadProfile = {()=> navigate('MovieProfile',movieItem.item)}
 					 />}
 					onRefresh= {this.props.refreshPage}
 					refreshing={this.props.loading}
 					onEndReachedThreshold={0.05}
 					onEndReached = {this.props.loading ? null : this.props.loadMore}
 					ListFooterComponent={this.renderFooter}
+					ListHeaderComponent={this.renderHeader}
 					/>
 			</View>
 		);
@@ -49,6 +51,12 @@ class MovieList extends Component {
 				</View>
 				);
 	}
+	renderHeader = () => {
+		return <SearchBar placeholder="Type Here..." lightTheme round  onChange=
+	{e => this.props.searchMovie(this.e)
+	}
+		/>;
+	}
 }
 
 
@@ -57,7 +65,7 @@ class MovieList extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		marginTop: 100,
+		marginTop: 20,
 	},
 	activityIndicator: {
 		alignItems: 'center',

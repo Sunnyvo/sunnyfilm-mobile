@@ -20,7 +20,7 @@ export const HomeStack = StackNavigator({
   MovieProfile: {
     screen: MovieProfile,
     navigationOptions: {
-      title: 'Movie Profile'
+      // title: `${state.}`
     }
   },
 
